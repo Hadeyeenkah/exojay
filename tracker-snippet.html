@@ -1,0 +1,18 @@
+<!-- Paste this just before </body> on every page you want to track.
+     Replace the URL with wherever you deploy the server. -->
+<script>
+  (function () {
+    try {
+      fetch("https:///api/visit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          site: location.hostname,
+          page: location.pathname + location.search,
+          referrer: document.referrer
+        }),
+        keepalive: true
+      });
+    } catch (e) {}
+  })();
+</script>
